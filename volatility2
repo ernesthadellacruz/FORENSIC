@@ -1,0 +1,56 @@
+                             volatility2 plug according to its category
+Plug category 
+1 Process analysis
+What is Process Analysis?
+ Process Analysis is the examination of running and previously existing processes in a computer's memory to understand what programs were executing when the memory image was captured
+Lesson 1: Process Analysis
+Tutaanza hapa
+1. What is Process Analysis?
+English: Process Analysis is the examination of running and previously existing processes in a computer's memory to understand what programs were executing when the memory image was captured.
+
+Kwa Kiswahili: Process Analysis ni uchunguzi wa programu zilizokuwa zinafanya kazi kwenye computer wakati memory iliponaswa. Tunataka kujua:
+- Ni programu gani zilikuwa zina-run?
+- Kila process ina PID gani?
+- Ni process gani iliyoanzisha process nyingine?
+- Kuna process zilizofichwa?
+- Process ina command line gani?
+2. pslist — List Running Processes
+English: The pslist plugin displays processes by following the Windows active process list (EPROCESS).
+
+Kwa Kiswahili: Plugin hii inatuonyesha processes zinazopatikana kwenye active process list ya Windows.
+
+Command:vol2 -f victim.raw --profile=Win7SP1x64_23418 pslist
+Maelezo ya options:
+Option	Maana
+-f victim.raw	Memory image tunayochunguza
+--profile	Windows profile ya memory image
+pslist	Plugin ya kuonyesha processes
+
+Fields muhimu:
+- Name: Jina la process.
+- PID: Process ID.
+- PPID: Parent Process ID.
+- Thds: Number of threads.
+- Hnds: Number of handles.
+- Start: Muda ambao process ilianza.
+- Exit: Muda ambao process ilimaliza, ikiwa taarifa hiyo ipo.
+3. psscan — Scan for Processes
+English: The psscan plugin searches memory for process objects instead of relying only on the active process list.
+
+Kwa Kiswahili: psscan inatafuta process objects moja kwa moja kwenye memory. Inaweza kutuonyesha process ambazo hazionekani kwenye pslist, ikiwemo baadhi ya processes zilizofichwa au zilizokuwa zimeisha.
+  Muhimu: Process kuonekana kwenye psscan pekee hakuthibitishi kuwa ni malware. Tunahitaji kuchunguza zaidi.
+4. pstree — Process Tree
+English: Displays processes in a hierarchical structure based on their parent-child relationships.
+
+Kwa Kiswahili: Inatuonyesha uhusiano wa mzazi na mtoto kati ya processes.
+  
+  5. psxview — Detect Potentially Hidden Processes
+English: Compares different process-listing methods to identify inconsistencies that may indicate hidden processes.
+
+Kwa Kiswahili: Inalinganisha njia mbalimbali za kuorodhesha processes. Ikiwa process inaonekana kwenye baadhi ya njia lakini haionekani kwenye nyingine, tunapata sababu ya kuichunguza zaidi.
+  cmdline — Process Command Line
+English: Displays the command-line arguments used when a process was started.
+
+Kwa Kiswahili: Inatuonyesha command iliyotumika kuanzisha process.
+  vol2 -f victim.raw --profile=Win7SP1x64_23418 cmdline -p 2464 kuchunguza process 1
+  
